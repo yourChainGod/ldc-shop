@@ -51,8 +51,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     // Temporary diagnostics: keep this until OAuth callback issue is resolved.
     logger: {
-        error(code, metadata) {
-            console.error("[auth-temp]", code, metadata)
+        error(error) {
+            console.error("[auth-temp]", {
+                name: error.name,
+                message: error.message,
+                // Auth.js puts provider details under error.cause when available.
+                cause: (error as Error & { cause?: unknown }).cause,
+                stack: error.stack,
+            })
         },
     },
     // Use OAUTH_CLIENT_SECRET as fallback if NEXTAUTH_SECRET is not set
