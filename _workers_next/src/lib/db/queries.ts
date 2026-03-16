@@ -157,7 +157,11 @@ async function ensureDatabaseInitialized() {
         // OPTIMIZATION: Check schema version first to avoid heavy DDL checks
         try {
             const version = await getSetting('schema_version');
-            if (version === String(CURRENT_SCHEMA_VERSION)) {
+            const parsedVersion = Number.parseInt(String(version || '').trim(), 10);
+            if (
+                version === String(CURRENT_SCHEMA_VERSION) ||
+                (Number.isFinite(parsedVersion) && parsedVersion >= CURRENT_SCHEMA_VERSION)
+            ) {
                 dbInitialized = true;
                 return;
             }

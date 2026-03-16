@@ -28,9 +28,7 @@ export function ProductImagePlaceholder({ productId, productName, size = "sm", c
     const boxSize = fill
         ? size === "xs"
             ? "h-full w-full"
-            : size === "sm"
-                ? "h-full w-full max-h-[13rem]"
-                : "h-full w-full max-h-[24rem]"
+            : "h-full w-full"
         : size === "xs"
             ? "h-12 w-12"
             : size === "sm"
@@ -38,10 +36,10 @@ export function ProductImagePlaceholder({ productId, productName, size = "sm", c
                 : "h-28 w-28"
     const iconSize = fill
         ? size === "xs"
-            ? "h-8 w-8"
+            ? "h-10 w-10"
             : size === "sm"
-                ? "h-16 w-16"
-                : "h-24 w-24"
+                ? "h-24 w-24"
+                : "h-32 w-32"
         : size === "xs"
             ? "h-5 w-5"
             : size === "sm"
@@ -58,7 +56,7 @@ export function ProductImagePlaceholder({ productId, productName, size = "sm", c
                 }}
             >
                 <Icon
-                    className={`${iconSize} opacity-50`}
+                    className={`${iconSize} opacity-55`}
                     strokeWidth={1.5}
                     style={{ color: `oklch(0.5 0.2 ${hue})` }}
                 />
